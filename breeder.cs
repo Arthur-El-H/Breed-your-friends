@@ -59,44 +59,7 @@ public class breeder : MonoBehaviour
         return brood;
     }
 
-    private Imutation breedMutation(Imutation mutationMom, Imutation mutationDad)
-    {
-        bool momActive = mutationMom.isActive();
-        bool dadActive = mutationDad.isActive();
-        bool broodActive;
-        double chanceForMutation;
 
-        if (dadActive && momActive)
-        {
-            chanceForMutation = mutationMom.getChanceForBothParents();
-        }
-        else if (dadActive || momActive)
-        {
-            chanceForMutation = mutationMom.getChanceForOneParent();
-        }
-        else
-        {
-            chanceForMutation = mutationMom.getChanceForNoParent();
-        }
-
-        broodActive = getBroodMutationActivity(chanceForMutation);
-
-        mutationMom.setActivity(broodActive);
-        return mutationMom;
-    }
-
-    private bool getBroodMutationActivity( double chance)
-    {
-        double resultOfMixture = randomNumberBetween(0, 100);
-        if (resultOfMixture < chance)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
 
     private head breedHead(head headMom, head headDad)
     {
@@ -119,12 +82,10 @@ public class breeder : MonoBehaviour
 
         adjustHeadPos(broodHead.eyesPos, broodHead.width, broodHead.height); //Vermutlich erst in drawer umsetzen
     }
-
     private void adjustHeadPos(Vector2 eyesPos, double width, double height)
     {
 
     }
-
     private static void adjustHeadSpace(possibleSpace space, double width, double height)
     {
         // this works when middlepoint is seen as 0/0
@@ -133,6 +94,8 @@ public class breeder : MonoBehaviour
         space.maxY *= height;
         space.minX *= height;
     }
+
+
 
     private generalTraitAspects breedGeneral(generalTraitAspects mom, generalTraitAspects dad)
     {
@@ -228,6 +191,48 @@ public class breeder : MonoBehaviour
         }
     }
 
+
+
+    private Imutation breedMutation(Imutation mutationMom, Imutation mutationDad)
+    {
+        bool momActive = mutationMom.isActive();
+        bool dadActive = mutationDad.isActive();
+        bool broodActive;
+        double chanceForMutation;
+
+        if (dadActive && momActive)
+        {
+            chanceForMutation = mutationMom.getChanceForBothParents();
+        }
+        else if (dadActive || momActive)
+        {
+            chanceForMutation = mutationMom.getChanceForOneParent();
+        }
+        else
+        {
+            chanceForMutation = mutationMom.getChanceForNoParent();
+        }
+
+        broodActive = getBroodMutationActivity(chanceForMutation);
+
+        mutationMom.setActivity(broodActive);
+        return mutationMom;
+    }
+    private bool getBroodMutationActivity(double chance)
+    {
+        double resultOfMixture = randomNumberBetween(0, 100);
+        if (resultOfMixture < chance)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+
+
     private static double randomNumberBetween(double minValue, double maxValue)
     {
         var next = random.NextDouble();
@@ -274,4 +279,5 @@ public class breeder : MonoBehaviour
         abnormality += getTypeAbnorm(broodHead.type);
         return abnormality;
     }
+
 }
