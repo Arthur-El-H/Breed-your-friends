@@ -11,13 +11,13 @@ public struct person
     public generalTraitAspects eyes;
     public generalTraitAspects ears;
 
-    public mutation sunglasses;
-    public mutation pox;
-    public mutation jaundice;
-    public mutation syphilis;
-    public mutation thirdEye;
-    public mutation walrus;
-    public mutation frankenstein;
+    public Imutation sunglasses;
+    public Imutation pox;
+    public Imutation jaundice;
+    public Imutation syphilis;
+    public Imutation thirdEye;
+    public Imutation walrus;
+    public Imutation frankenstein;
 
     public int abnormality;
 }
@@ -51,12 +51,6 @@ public struct generalTraitAspects // generally used for physical parts of the fa
     public double width;
 
     public Color color;
-    public int abnormality;
-}
-
-public struct mutation
-{
-    public bool isExistent;
     public int abnormality;
 }
 

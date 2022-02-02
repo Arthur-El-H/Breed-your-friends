@@ -41,15 +41,97 @@ public class breeder : MonoBehaviour
     {
         person brood = new person();
 
-        //brood.head = breedHead(mom.head, dad.head);
+        brood.head = breedHead(mom.head, dad.head);
+
         brood.mouth = breedGeneral(mom.mouth, dad.mouth);
         brood.nose = breedGeneral(mom.nose, dad.nose);
         brood.ears = breedGeneral(mom.ears, dad.ears);
         brood.eyes = breedGeneral(mom.eyes, dad.eyes);
-        //...
 
+        brood.sunglasses = breedMutation(mom.sunglasses, dad.sunglasses);
+        brood.pox = breedMutation(mom.pox, dad.pox);
+        brood.jaundice = breedMutation(mom.jaundice, dad.jaundice);
+        brood.syphilis = breedMutation(mom.syphilis, dad.syphilis);
+        brood.thirdEye = breedMutation(mom.thirdEye, dad.thirdEye);
+        brood.walrus = breedMutation(mom.walrus, dad.walrus);
+        brood.frankenstein = breedMutation(mom.frankenstein, dad.frankenstein);
 
         return brood;
+    }
+
+    private Imutation breedMutation(Imutation mutationMom, Imutation mutationDad)
+    {
+        bool momActive = mutationMom.isActive();
+        bool dadActive = mutationDad.isActive();
+        bool broodActive;
+        double chanceForMutation;
+
+        if (dadActive && momActive)
+        {
+            chanceForMutation = mutationMom.getChanceForBothParents();
+        }
+        else if (dadActive || momActive)
+        {
+            chanceForMutation = mutationMom.getChanceForOneParent();
+        }
+        else
+        {
+            chanceForMutation = mutationMom.getChanceForNoParent();
+        }
+
+        broodActive = getBroodMutationActivity(chanceForMutation);
+
+        mutationMom.setActivity(broodActive);
+        return mutationMom;
+    }
+
+    private bool getBroodMutationActivity( double chance)
+    {
+        double resultOfMixture = randomNumberBetween(0, 100);
+        if (resultOfMixture < chance)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private head breedHead(head headMom, head headDad)
+    {
+        head broodHead = new head();
+        broodHead.type = breedType(headMom.type, headDad.type);
+        broodHead.height = breedLength(headMom.height, headDad.height);
+        broodHead.width = breedLength(headMom.width, headDad.width);
+        broodHead.abnormality = getHeadAbnormality(broodHead);
+        adjustHeadToLength(broodHead); //Diesen Teil evtl. in drawer, damit in der breeder Klasse nur die absoluten Daten sind.
+        return broodHead;
+    }
+
+    private void adjustHeadToLength(head broodHead)
+    {
+        //TODO statt adjust -> getAdjusted
+        adjustHeadSpace(broodHead.earsSpace, broodHead.width, broodHead.height);
+        adjustHeadSpace(broodHead.eyesSpace, broodHead.width, broodHead.height);
+        adjustHeadSpace(broodHead.mouthSpace, broodHead.width, broodHead.height);
+        adjustHeadSpace(broodHead.noseSpace, broodHead.width, broodHead.height);
+
+        adjustHeadPos(broodHead.eyesPos, broodHead.width, broodHead.height); //Vermutlich erst in drawer umsetzen
+    }
+
+    private void adjustHeadPos(Vector2 eyesPos, double width, double height)
+    {
+
+    }
+
+    private static void adjustHeadSpace(possibleSpace space, double width, double height)
+    {
+        // this works when middlepoint is seen as 0/0
+        space.minX *= width;
+        space.maxX *= width;
+        space.maxY *= height;
+        space.minX *= height;
     }
 
     private generalTraitAspects breedGeneral(generalTraitAspects mom, generalTraitAspects dad)
@@ -184,5 +266,12 @@ public class breeder : MonoBehaviour
     {
         return (int)Math.Round((height * 6 - 2), MidpointRounding.AwayFromZero);
     }
-
+    private int getHeadAbnormality(head broodHead)
+    {
+        int abnormality = 0;
+        abnormality += getLengthAbnorm(broodHead.height);
+        abnormality += getLengthAbnorm(broodHead.width);
+        abnormality += getTypeAbnorm(broodHead.type);
+        return abnormality;
+    }
 }
