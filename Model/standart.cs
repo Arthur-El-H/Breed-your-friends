@@ -31,6 +31,15 @@ public class standart : MonoBehaviour
     public int walrusID = 6;
     public int frankensteinID = 7;
 
+    public const char typeOne = 'a';
+    public const char typeTwo = 'b';
+    public const char typeThree = 'c';
+    public const char typeFour = 'd';
+    public const char typeFive = 'e';
+
+    public const double standartMinimumForLengthMultiplier = 0.8;
+    public const double standartMaximumForLengthMultiplier = 1.2;
+
     void Start()
     {
         headNosePos = Vector2.zero;
