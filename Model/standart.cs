@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class standart : MonoBehaviour
 {
+    public const double totallyNormal = 1;
+    public const double prettyNormal = 1.2;
+    public const double notNormal = 1.4;
+    public const double weird = 1.7;
+
+
     public Vector2 headNosePos;
     public Vector2 headOneMouthPos;
     public Vector2 headTwoMouthPos;

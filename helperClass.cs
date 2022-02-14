@@ -22,14 +22,14 @@ public static class helperClass
         throw new unexpectedError();
     }
 
-    internal static double getRandomLength()
+    internal static double getRandomLength(double extremeness)
     {
-        return randomNumberBetween(standart.standartMinimumForLengthMultiplier, standart.standartMinimumForLengthMultiplier);
+        return randomNumberBetween(extremeness * standart.standartMinimumForLengthMultiplier, extremeness * standart.standartMinimumForLengthMultiplier);
     }
 
-    public static double getRandomPos()
+    public static double getRandomPos(double extremeness)
     {
-        return randomNumberBetween(standart.standartMinimumForLengthMultiplier, standart.standartMaximumForLengthMultiplier);
+        return randomNumberBetween(extremeness * standart.standartMinimumForLengthMultiplier, extremeness * standart.standartMaximumForLengthMultiplier);
     }
 
     public static double randomNumberBetween(double minValue, double maxValue)

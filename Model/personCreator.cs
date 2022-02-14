@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class personCreator : MonoBehaviour
 {
-    public person createRandomPerson()
+    public person createRandomPerson(double extremeness)
     {
         person newPerson = new person();
-        newPerson.head = getRandomHead();
-        newPerson = getRandromGeneralTraits(newPerson);
+        newPerson.head = getRandomHead(extremeness);
+        newPerson = getRandromGeneralTraits(newPerson, extremeness);
         newPerson = getRandomMutations(newPerson);
         return newPerson;
     }
@@ -26,35 +26,34 @@ public class personCreator : MonoBehaviour
         return newPerson;
     }
 
-    private static person getRandromGeneralTraits(person newPerson)
+    private static person getRandromGeneralTraits(person newPerson, double extremeness)
     {
-        newPerson.eyes = getRandomGeneralTrait();
-        newPerson.nose = getRandomGeneralTrait();
-        newPerson.ears = getRandomGeneralTrait();
-        newPerson.eyes = getRandomGeneralTrait();
+        newPerson.eyes = getRandomGeneralTrait(extremeness);
+        newPerson.nose = getRandomGeneralTrait(extremeness);
+        newPerson.ears = getRandomGeneralTrait(extremeness);
+        newPerson.eyes = getRandomGeneralTrait(extremeness);
         return newPerson;
     }
 
-    private static generalTraitAspects getRandomGeneralTrait()
+    private static generalTraitAspects getRandomGeneralTrait(double extremeness)
     {
         generalTraitAspects generalTrait = new generalTraitAspects();
         generalTrait.type = helperClass.getRandomType();
-        generalTrait.height = helperClass.getRandomLength();
-        generalTrait.width = helperClass.getRandomLength();
-        generalTrait.xPos = helperClass.getRandomPos();
-        generalTrait.yPos = helperClass.getRandomPos();
+        generalTrait.height = helperClass.getRandomLength(extremeness);
+        generalTrait.width = helperClass.getRandomLength(extremeness);
+        generalTrait.xPos = helperClass.getRandomPos(extremeness);
+        generalTrait.yPos = helperClass.getRandomPos(extremeness);
         generalTrait.abnormality = abnormalityMeasurer.getGeneralTraitAbnormality(generalTrait);
         return generalTrait;
     }
-    private static head getRandomHead()
+    private static head getRandomHead(double extremeness)
     {
         head randomHead = new head();
 
         randomHead.type = helperClass.getRandomType();
 
-        //TODO get random length mit Parameter dafür, wie weit Abweichung vom Standart sein darf. Bisher immer nur Standart Personen.
-        randomHead.height = helperClass.getRandomLength();
-        randomHead.width = helperClass.getRandomLength();
+        randomHead.height = helperClass.getRandomLength(extremeness);
+        randomHead.width = helperClass.getRandomLength(extremeness);
 
         randomHead.abnormality = abnormalityMeasurer.getHeadAbnormality(randomHead);
         headAdjuster.adjustHeadToLength(randomHead);
