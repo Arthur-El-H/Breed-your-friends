@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AbstractMutation : MonoBehaviour
+public class AbstractMutation 
 {
     private double chanceForBothParent = 90;
     private double chanceForOneParent = 50;

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class host
+public class host: MonoBehaviour
 {
     private marriageMarket marriageMarket;
     private person currentHost;

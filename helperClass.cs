@@ -6,7 +6,7 @@ using UnityEngine;
 public static class helperClass 
 {
     //TODO maybe change name to randomizer or sth.
-    static System.Random random; //TODO initialize
+    static System.Random random = new System.Random(); //TODO initialize
 
     static public char getRandomType()
     {
