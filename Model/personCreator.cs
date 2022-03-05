@@ -31,7 +31,7 @@ public class personCreator : MonoBehaviour
         newPerson.eyes = getRandomGeneralTrait(extremeness);
         newPerson.nose = getRandomGeneralTrait(extremeness);
         newPerson.ears = getRandomGeneralTrait(extremeness);
-        newPerson.eyes = getRandomGeneralTrait(extremeness);
+        newPerson.mouth = getRandomGeneralTrait(extremeness);
         return newPerson;
     }
 

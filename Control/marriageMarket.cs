@@ -27,9 +27,10 @@ public class marriageMarket: MonoBehaviour
         new Vector2(9, -4),
     };     
 
-    private void Start()
+    public void initMarriageMarket(host newHost, personCreator newPersonCreator)
     {
-        
+        host = newHost;
+        personCreator = newPersonCreator;
     }
 
     internal void createMarriageMarket()
@@ -44,7 +45,13 @@ public class marriageMarket: MonoBehaviour
         //ToDo: Fix delegate. Create not always totally normal. See in commented code below. Delete commented code when finished and maybe delete List "Market".
         for (int i = 0; i < 3; i++)
         {
-            personToCreate = personCreator.createRandomPerson(standart.totallyNormal);
+            double extremeness = standart.totallyNormal;
+            switch (i)
+            { 
+                case 1: extremeness = standart.prettyNormal; break;
+                case 2: extremeness = standart.notNormal; break;
+            }
+            personToCreate = personCreator.createRandomPerson(extremeness);
             possibleMate = Instantiate(genericMate, new Vector3(0, 0, 0), Quaternion.identity).GetComponent<possibleMate>();       
             GameObject btn = buttonManager.getButton(marryMethod, personToCreate);
             possibleMate.setUp(btn, matePositions[i]);

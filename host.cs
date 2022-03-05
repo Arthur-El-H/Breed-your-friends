@@ -12,6 +12,12 @@ public class host: MonoBehaviour
     private double attractivity;
     private readonly double fuckingSuperAttractive = 100000000000;
 
+    public void initHost(marriageMarket newMarriageMarket, breeder newBreeder)
+    {
+        marriageMarket = newMarriageMarket;
+        breeder = newBreeder;
+    }
+
     public void gainWealth()
     {
         wealth += 30;
@@ -43,6 +49,7 @@ public class host: MonoBehaviour
 
     public void mate(person mate)
     {
+        Debug.Log("pls marry me");
         nestIn(breeder.breedPerson(currentHost, mate));
     }
 

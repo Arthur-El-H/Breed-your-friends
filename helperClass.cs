@@ -24,7 +24,7 @@ public static class helperClass
 
     internal static double getRandomLength(double extremeness)
     {
-        return randomNumberBetween(extremeness * standart.standartMinimumForLengthMultiplier, extremeness * standart.standartMinimumForLengthMultiplier);
+        return randomNumberBetween(extremeness * standart.standartMinimumForLengthMultiplier, extremeness * standart.standartMaximumForLengthMultiplier);
     }
 
     public static double getRandomPos(double extremeness)
@@ -35,8 +35,9 @@ public static class helperClass
     public static double randomNumberBetween(double minValue, double maxValue)
     {
         var next = random.NextDouble();
-
-        return minValue + (next * (maxValue - minValue));
+        double res = minValue + (next * (maxValue - minValue));
+        Debug.Log(res + " is between " + minValue + " and " + maxValue);
+        return res;
     }
 
     public static bool getMutationActivity(double chance)
