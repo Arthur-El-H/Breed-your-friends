@@ -8,6 +8,8 @@ public class ingameManager : MonoBehaviour
     [SerializeField] private personCreator personCreator;
     [SerializeField] private GameObject hostPrefab;
     [SerializeField] private breeder breeder;
+    [SerializeField] private buttonManager buttonManager;
+
 
 
     private host host;
@@ -20,6 +22,7 @@ public class ingameManager : MonoBehaviour
         marriageMarket.initMarriageMarket(host, personCreator);
 
         marriageMarket.createMarriageMarket();
+        buttonManager.initActionBtns(host);
     }
 
     // Start is called before the first frame update

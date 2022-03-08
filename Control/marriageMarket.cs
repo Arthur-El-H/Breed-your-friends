@@ -10,7 +10,6 @@ public class marriageMarket: MonoBehaviour
     [SerializeField] private GameObject genericMate;
     [SerializeField] private host host;
     personCreator personCreator;
-    List<person> market;
     int timesMarketWasEnlarged;
     public buttonManager.marryMe marryMethod;
 
@@ -36,38 +35,44 @@ public class marriageMarket: MonoBehaviour
     internal void createMarriageMarket()
     {
         timesMarketWasEnlarged = 0;
-        market = new List<person>();
-
-        person personToCreate;
-        possibleMate possibleMate;
         marryMethod = host.mate;
 
-        //ToDo: Fix delegate. Create not always totally normal. See in commented code below. Delete commented code when finished and maybe delete List "Market".
+        double extremeness = standart.totallyNormal;
         for (int i = 0; i < 3; i++)
         {
-            double extremeness = standart.totallyNormal;
             switch (i)
-            { 
+            {
+                case 0: extremeness = standart.totallyNormal; break;
                 case 1: extremeness = standart.prettyNormal; break;
                 case 2: extremeness = standart.notNormal; break;
             }
-            personToCreate = personCreator.createRandomPerson(extremeness);
-            possibleMate = Instantiate(genericMate, new Vector3(0, 0, 0), Quaternion.identity).GetComponent<possibleMate>();       
-            GameObject btn = buttonManager.getButton(marryMethod, personToCreate);
-            possibleMate.setUp(btn, matePositions[i]);
+            setUpMate( i, extremeness);
         }
+    }
 
-        //market.Add(personCreator.createRandomPerson(standart.totallyNormal));
-        //market.Add(personCreator.createRandomPerson(standart.prettyNormal));
-        //market.Add(personCreator.createRandomPerson(standart.notNormal));
+    private void setUpMate( int indexNumber, double extremeness)
+    {
+        person personToCreate;
+        possibleMate possibleMate;
+        personToCreate = personCreator.createRandomPerson(extremeness);
+        possibleMate = Instantiate(genericMate, new Vector3(0, 0, 0), Quaternion.identity).GetComponent<possibleMate>();
+        GameObject btn = buttonManager.getButtonForPossibleMate(marryMethod, personToCreate);
+        possibleMate.setUp(btn, matePositions[indexNumber]);
     }
 
     public void enlargeMarket()
     {
-        //ToDo: change as above in createMarket Function
         timesMarketWasEnlarged++;
-        //market.Add(personCreator.createRandomPerson(standart.totallyNormal));
-        //market.Add(personCreator.createRandomPerson(standart.prettyNormal));
-        //market.Add(personCreator.createRandomPerson(standart.notNormal));
+        double extremeness = standart.totallyNormal;
+        for (int i = 3; i < 6; i++)
+        {
+            switch (i)
+            {
+                case 0: extremeness = standart.totallyNormal; break;
+                case 1: extremeness = standart.prettyNormal; break;
+                case 2: extremeness = standart.notNormal; break;
+            }
+            setUpMate(i, extremeness);
+        }
     }
 }
