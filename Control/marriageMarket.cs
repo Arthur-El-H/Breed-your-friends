@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class marriageMarket: MonoBehaviour
 {
-    // Start is called before the first frame update
+    public personTester test;
+
     [SerializeField] private buttonManager buttonManager;
     [SerializeField] private GameObject genericMate;
     [SerializeField] private host host;
@@ -55,6 +56,9 @@ public class marriageMarket: MonoBehaviour
         person personToCreate;
         possibleMate possibleMate;
         personToCreate = personCreator.createRandomPerson(extremeness);
+
+        test.showPerson(personToCreate, "person created for marriagemarket.", extremeness);
+
         possibleMate = Instantiate(genericMate, new Vector3(0, 0, 0), Quaternion.identity).GetComponent<possibleMate>();
         GameObject btn = buttonManager.getButtonForPossibleMate(marryMethod, personToCreate);
         possibleMate.setUp(btn, matePositions[indexNumber]);
