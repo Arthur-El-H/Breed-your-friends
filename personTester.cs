@@ -38,9 +38,9 @@ public class personTester: MonoBehaviour
     public List<char> headType = new List<char>();
     public List<int> headAbnormality = new List<int>();
 
-    public void showPerson( person personToShow, string descr, double extremeness)
+    public void showAndTrackPerson( person personToShow, string descr, double extremeness)
     {
-        trackPerson(personToShow, extremeness);
+        trackPerson(personToShow);
         Debug.Log(" --- new person ---");
         Debug.Log(descr);
         Debug.Log(extremeness);
@@ -61,7 +61,7 @@ public class personTester: MonoBehaviour
         Debug.Log("----");
     }
 
-    private void trackPerson(person personToShow, double extremeness)
+    private void trackPerson(person personToShow)
     {
         trackMouth(personToShow.mouth);
         trackEars(personToShow.ears);

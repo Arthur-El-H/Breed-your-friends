@@ -24,12 +24,12 @@ public static class helperClass
 
     internal static double getRandomLength(double extremeness)
     {
-        return randomNumberBetween(extremeness * standart.standartMinimumForLengthMultiplier, extremeness * standart.standartMaximumForLengthMultiplier);
+        return randomNumberBetween(standart.standartMinimumForLengthMultiplier / extremeness, extremeness * standart.standartMaximumForLengthMultiplier);
     }
 
     public static double getRandomPos(double extremeness)
     {
-        return randomNumberBetween(extremeness * standart.standartMinimumForLengthMultiplier, extremeness * standart.standartMaximumForLengthMultiplier);
+        return randomNumberBetween(standart.standartMinimumForLengthMultiplier / extremeness, extremeness * standart.standartMaximumForLengthMultiplier);
     }
 
     public static double randomNumberBetween(double minValue, double maxValue)

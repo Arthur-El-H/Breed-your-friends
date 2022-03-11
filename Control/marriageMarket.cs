@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class marriageMarket: MonoBehaviour
 {
-    public personTester test;
+    public personTester totallyNormalTest;
+    public personTester prettyNormalTest;
+    public personTester notNormalTest;
+    public personTester weirdTest;
 
     [SerializeField] private buttonManager buttonManager;
     [SerializeField] private GameObject genericMate;
@@ -57,7 +60,13 @@ public class marriageMarket: MonoBehaviour
         possibleMate possibleMate;
         personToCreate = personCreator.createRandomPerson(extremeness);
 
-        test.showPerson(personToCreate, "person created for marriagemarket.", extremeness);
+        switch (extremeness)
+        {
+            case standart.totallyNormal: totallyNormalTest.showAndTrackPerson(personToCreate, "person created for marriagemarket.", extremeness); break;
+            case standart.prettyNormal: prettyNormalTest.showAndTrackPerson(personToCreate, "person created for marriagemarket.", extremeness); break;
+            case standart.notNormal: notNormalTest.showAndTrackPerson(personToCreate, "person created for marriagemarket.", extremeness); break;
+            case standart.weird: weirdTest.showAndTrackPerson(personToCreate, "person created for marriagemarket.", extremeness); break;
+        }
 
         possibleMate = Instantiate(genericMate, new Vector3(0, 0, 0), Quaternion.identity).GetComponent<possibleMate>();
         GameObject btn = buttonManager.getButtonForPossibleMate(marryMethod, personToCreate);
@@ -72,9 +81,9 @@ public class marriageMarket: MonoBehaviour
         {
             switch (i)
             {
-                case 0: extremeness = standart.totallyNormal; break;
-                case 1: extremeness = standart.prettyNormal; break;
-                case 2: extremeness = standart.notNormal; break;
+                case 3: extremeness = standart.prettyNormal; break;
+                case 4: extremeness = standart.notNormal; break;
+                case 5: extremeness = standart.weird; break;
             }
             setUpMate(i, extremeness);
         }
