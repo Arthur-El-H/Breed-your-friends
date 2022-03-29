@@ -20,22 +20,26 @@ public class host: MonoBehaviour
 
     public void gainWealth()
     {
+        Debug.Log("gaining wealth");
         wealth += 30;
         wealth *= 1.3;
     }
 
     public void gainAcquaintances()
     {
+        Debug.Log("gaining Acquaintances");
         marriageMarket.enlargeMarket();
     }
 
     public void workout()
     {
+        Debug.Log("working out");
         attractivity *= 1.4;
     }
 
     public void getPlasticSurgery()
     {
+        Debug.Log("getting surgery");
         if (wealth > 1000)
         {
             attractivity = fuckingSuperAttractive;

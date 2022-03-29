@@ -49,19 +49,24 @@ public class buttonManager : MonoBehaviour
         
         hostAction = host.getPlasticSurgery;
         surgeryBtn = getHostActionButton(hostAction);
-        moveBtn(surgeryBtn, cam.WorldToScreenPoint(new Vector3(0,-2,0)));
+        surgeryBtn.name = "surgeryBtn";
+        //surgeryBtn.GetComponent<Button>().
+        moveBtn(surgeryBtn, cam.WorldToScreenPoint(new Vector3(0,-4,0)));
 
         hostAction = host.gainWealth;
         wealthBtn = getHostActionButton(hostAction);
-        moveBtn(wealthBtn, cam.WorldToScreenPoint(new Vector3(0, 0, 0)));
+        wealthBtn.name = "wealthBtn";
+        moveBtn(wealthBtn, cam.WorldToScreenPoint(new Vector3(0, -2, 0)));
 
         hostAction = host.gainAcquaintances;
         acquaintancesBtn = getHostActionButton(hostAction);
-        moveBtn(acquaintancesBtn, cam.WorldToScreenPoint(new Vector3(0, 2, 0)));
+        acquaintancesBtn.name = "acquaintancesBtn";
+        moveBtn(acquaintancesBtn, cam.WorldToScreenPoint(new Vector3(0, 0, 0)));
 
         hostAction = host.workout;
         workOutBtn = getHostActionButton(hostAction);
-        moveBtn(workOutBtn, cam.WorldToScreenPoint(new Vector3(-2, 0, 0)));
+        workOutBtn.name = "workOutBtn";
+        moveBtn(workOutBtn, cam.WorldToScreenPoint(new Vector3(0, 2, 0)));
     }
 
     public GameObject getHostActionButton(hostAction methodToCallOnPress)
