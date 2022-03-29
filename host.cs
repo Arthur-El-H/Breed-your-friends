@@ -25,9 +25,9 @@ public class host: MonoBehaviour
     {
         if ( yearsPassed < maxYearsToPass)
         {
+            yearsPassed++;
             return true;
         }
-        yearsPassed++;
         Debug.Log("Enough years have passed. Marry already!");
         return false;
     }
