@@ -27,7 +27,7 @@ public class host: MonoBehaviour
         {
             return true;
         }
-
+        yearsPassed++;
         Debug.Log("Enough years have passed. Marry already!");
         return false;
     }
