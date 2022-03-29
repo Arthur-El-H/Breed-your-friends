@@ -6,7 +6,7 @@ using UnityEngine;
 public class host: MonoBehaviour
 {
     private marriageMarket marriageMarket;
-    private person currentHost;
+    public person currentHost; //TODO private
     private breeder breeder;
     private double wealth = 100;
     private double attractivity;
@@ -72,6 +72,7 @@ public class host: MonoBehaviour
     {
         Debug.Log("pls marry me");
         nestIn(breeder.breedPerson(currentHost, mate));
+        Debug.Log("My abnormality is now " + currentHost.abnormality);
     }
 
     internal void nestIn(person person)

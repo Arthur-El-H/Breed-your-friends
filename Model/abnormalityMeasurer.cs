@@ -11,6 +11,16 @@ public static class abnormalityMeasurer
     const int abnormalityFour = 8;
     const int abnormalityFive = 10;
 
+    public static int getAbnormalityOfPerson(person person)
+    {
+        int abnormality = 0 + person.ears.abnormality
+                            + person.eyes.abnormality
+                            + person.head.abnormality
+                            + person.nose.abnormality
+                            + person.mouth.abnormality;
+        return abnormality;
+    }
+
     public static int getGeneralTraitAbnormality(generalTraitAspects traitAspects)
     {
         int abnormality = 0;
