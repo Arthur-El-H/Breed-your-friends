@@ -56,7 +56,6 @@ public class host: MonoBehaviour
 
     public void getPlasticSurgery()
     {
-        if (!isMoreYearsAvailable()) return;
         Debug.Log("getting surgery");
         if (wealth > 1000)
         {
