@@ -76,6 +76,7 @@ public class personTester: MonoBehaviour
         headHeight.Add(head.height);
         headWidth.Add(head.width);
         headAbnormality.Add(head.abnormality);
+        headType.Add(head.type);
     }
 
     private void trackNose(generalTraitAspects nose)
@@ -86,6 +87,7 @@ public class personTester: MonoBehaviour
         noseXPos.Add(nose.xPos);
         noseYPos.Add(nose.yPos);
         noseAbnormality.Add(nose.abnormality);
+        noseType.Add(nose.type);
     }
 
     private void trackEyes(generalTraitAspects eyes)
@@ -96,6 +98,7 @@ public class personTester: MonoBehaviour
         eyesXPos.Add(eyes.xPos);
         eyesYPos.Add(eyes.yPos);
         eyesAbnormality.Add(eyes.abnormality);
+        eyesType.Add(eyes.type);
     }
 
     private void trackEars(generalTraitAspects ears)
@@ -106,6 +109,7 @@ public class personTester: MonoBehaviour
         earsXPos.Add(ears.xPos);
         earsYPos.Add(ears.yPos);
         earsAbnormality.Add(ears.abnormality);
+        earsType.Add(ears.type);
     }
 
     private void trackMouth(generalTraitAspects mouth)
@@ -116,6 +120,7 @@ public class personTester: MonoBehaviour
         mouthXPos.Add(mouth.xPos);
         mouthYPos.Add(mouth.yPos);
         mouthAbnormality.Add(mouth.abnormality);
+        mouthType.Add(mouth.type);
     }
 
     private static void showHead(head head)
