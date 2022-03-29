@@ -12,14 +12,29 @@ public class host: MonoBehaviour
     private double attractivity;
     private readonly double fuckingSuperAttractive = 100000000000;
 
+    private int yearsPassed;
+    private const int maxYearsToPass = 5;
+
     public void initHost(marriageMarket newMarriageMarket, breeder newBreeder)
     {
         marriageMarket = newMarriageMarket;
         breeder = newBreeder;
     }
 
+    private bool isMoreYearsAvailable()
+    {
+        if ( yearsPassed < maxYearsToPass)
+        {
+            return true;
+        }
+
+        Debug.Log("Enough years have passed. Marry already!");
+        return false;
+    }
+
     public void gainWealth()
     {
+        if (!isMoreYearsAvailable()) return;
         Debug.Log("gaining wealth");
         wealth += 30;
         wealth *= 1.3;
@@ -27,18 +42,21 @@ public class host: MonoBehaviour
 
     public void gainAcquaintances()
     {
+        if (!isMoreYearsAvailable()) return;
         Debug.Log("gaining Acquaintances");
         marriageMarket.enlargeMarket();
     }
 
     public void workout()
     {
+        if (!isMoreYearsAvailable()) return;
         Debug.Log("working out");
         attractivity *= 1.4;
     }
 
     public void getPlasticSurgery()
     {
+        if (!isMoreYearsAvailable()) return;
         Debug.Log("getting surgery");
         if (wealth > 1000)
         {
