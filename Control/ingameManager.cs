@@ -9,6 +9,8 @@ public class ingameManager : MonoBehaviour
     [SerializeField] private GameObject hostPrefab;
     [SerializeField] private breeder breeder;
     [SerializeField] private buttonManager buttonManager;
+    [SerializeField] private personTester personTest;
+
 
 
 
@@ -17,7 +19,7 @@ public class ingameManager : MonoBehaviour
     public void initGame()
     {
         host = Instantiate(hostPrefab, Vector3.zero, Quaternion.identity).GetComponent<host>();
-        host.initHost(marriageMarket, breeder);
+        host.initHost(marriageMarket, breeder, personTest);
         host.nestIn(personCreator.createRandomPerson(standart.totallyNormal));
         marriageMarket.initMarriageMarket(host, personCreator);
 

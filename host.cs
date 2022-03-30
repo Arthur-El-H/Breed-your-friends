@@ -11,14 +11,17 @@ public class host: MonoBehaviour
     private double wealth = 100;
     private double attractivity;
     private readonly double fuckingSuperAttractive = 100000000000;
+    public personTester breedTest;
+
 
     private int yearsPassed;
     private const int maxYearsToPass = 5;
 
-    public void initHost(marriageMarket newMarriageMarket, breeder newBreeder)
+    public void initHost(marriageMarket newMarriageMarket, breeder newBreeder, personTester breedTester)
     {
         marriageMarket = newMarriageMarket;
         breeder = newBreeder;
+        breedTest = breedTester;
     }
 
     private bool isMoreYearsAvailable()
@@ -78,5 +81,6 @@ public class host: MonoBehaviour
     internal void nestIn(person person)
     {
         currentHost = person;
+        breedTest.showAndTrackPerson(person,"",1);
     }
 }

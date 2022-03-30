@@ -36,7 +36,6 @@ public static class helperClass
     {
         var next = random.NextDouble();
         double res = minValue + (next * (maxValue - minValue));
-        Debug.Log(res + " is between " + minValue + " and " + maxValue);
         return res;
     }
 

@@ -13,6 +13,8 @@ public class breeder : MonoBehaviour
 
     const double lengthMultMaxCap = 2;
     const double lengthMultMinCap = .5;
+    const double maxLength = 3;
+    const double minLength = .3;
 
 
 
@@ -97,7 +99,12 @@ public class breeder : MonoBehaviour
         double tendency = average - 1;
 
         double multiplier = helperClass.randomNumberBetween(getLengthMultMin(tendency), getLengthMultMax(tendency)) ;
-        return average * multiplier;
+        double newLength = average * multiplier;
+
+        if (newLength > maxLength) newLength = maxLength;
+        if (newLength < minLength) newLength = minLength;
+
+        return newLength;
     }
     private char breedType(char momType, char dadType)
     {
