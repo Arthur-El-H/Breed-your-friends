@@ -73,24 +73,21 @@ public class host: MonoBehaviour
 
     public void mate(person mate)
     {
-        if (personWantsToMarryHost(mate))
+        if (marriageMarket.proposing(currentHost,mate))
         {
             nestIn(breeder.breedPerson(currentHost, mate));
         }
     }
 
-    private bool personWantsToMarryHost(person mate)
-    {
-        bool personWantsToMarry = false;
-
-
-
-        return personWantsToMarry;
-    }
-
     internal void nestIn(person person)
     {
         currentHost = person;
+        currentHost.attractivity = marriageMarket.getAttractivity(this);
         breedTest.showAndTrackPerson(person,"",1);
+    }
+
+    internal int getWealth()
+    {
+        return (int)wealth;
     }
 }

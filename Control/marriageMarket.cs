@@ -91,17 +91,29 @@ public class marriageMarket: MonoBehaviour
 
     public bool proposing (person proposingPerson, person respondingPerson)
     {
-        int howMuchMoreAttractiveIsProposer = proposingPerson - respondingPerson;
-
+        int howMuchMoreAttractiveIsProposer = proposingPerson.attractivity - respondingPerson.attractivity;
+        if (howMuchMoreAttractiveIsProposer < -20)
+        {
+            return false;
+        }
         return true;
     }
 
     public static int getAttractivity(person personToRate)
     {
-        int personsAttractivity = 0;
-        personsAttractivity = 80 - personToRate.abnormality;
-        foreach (Imutation in personToRate)
-
+        int personsAttractivity = 80 - personToRate.abnormality;
+        foreach(Imutation mutation in personToRate.activeMutations)
+        {
+            personsAttractivity += mutation.getAttractivityBonus();
+        }
         return personsAttractivity;
+    }
+
+    public static int getAttractivity(host host)
+    {
+        int hostsAttractivity = host.currentHost.attractivity;
+        int moneyBonus = host.getWealth() / 20;
+        if (moneyBonus > standart.maxMoneyBonus) moneyBonus = standart.maxMoneyBonus;
+        return hostsAttractivity + moneyBonus;
     }
 }

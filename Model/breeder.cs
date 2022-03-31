@@ -43,10 +43,8 @@ public class breeder : MonoBehaviour
         brood.walrus = breedMutation(mom.walrus, dad.walrus);
         brood.frankenstein = breedMutation(mom.frankenstein, dad.frankenstein);
 
-
-
         brood.abnormality = abnormalityMeasurer.getAbnormalityOfPerson(brood);
-        brood.abnormality = marriageMarket.getAttractivity(brood);
+        brood.attractivity = marriageMarket.getAttractivity(brood);
 
         return brood;
     }

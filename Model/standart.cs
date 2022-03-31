@@ -36,7 +36,7 @@ public class standart : MonoBehaviour
     public int thirdEyeID = 5;
     public int walrusID = 6;
     public int frankensteinID = 7;
-
+    public static int maxMoneyBonus = 60;
     public const char typeOne = 'a';
     public const char typeTwo = 'b';
     public const char typeThree = 'c';
