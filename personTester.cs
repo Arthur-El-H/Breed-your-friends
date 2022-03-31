@@ -41,24 +41,24 @@ public class personTester: MonoBehaviour
     public void showAndTrackPerson( person personToShow, string descr, double extremeness)
     {
         trackPerson(personToShow);
-        Debug.Log(" --- new person ---");
-        Debug.Log(descr);
-        Debug.Log(extremeness);
+        //Debug.Log(" --- new person ---");
+        //Debug.Log(descr);
+        //Debug.Log(extremeness);
 
-        Debug.Log("-mouth-");
-        showGeneralTrait(personToShow.mouth);
-        Debug.Log("-nose-");
-        showGeneralTrait(personToShow.nose);
-        Debug.Log("-ears-");
-        showGeneralTrait(personToShow.ears);
-        Debug.Log("-eyes-");
-        showGeneralTrait(personToShow.eyes);
+        //Debug.Log("-mouth-");
+        //showGeneralTrait(personToShow.mouth);
+        //Debug.Log("-nose-");
+        //showGeneralTrait(personToShow.nose);
+        //Debug.Log("-ears-");
+        //showGeneralTrait(personToShow.ears);
+        //Debug.Log("-eyes-");
+        //showGeneralTrait(personToShow.eyes);
 
-        showHead(personToShow.head);
+        //showHead(personToShow.head);
 
-        Debug.Log("----");
-        Debug.Log("----");
-        Debug.Log("----");
+        //Debug.Log("----");
+        //Debug.Log("----");
+        //Debug.Log("----");
     }
 
     private void trackPerson(person personToShow)

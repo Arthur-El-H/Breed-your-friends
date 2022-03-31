@@ -102,9 +102,12 @@ public class marriageMarket: MonoBehaviour
     public static int getAttractivity(person personToRate)
     {
         int personsAttractivity = 80 - personToRate.abnormality;
-        foreach(Imutation mutation in personToRate.activeMutations)
+        if (personToRate.activeMutations != null)
         {
-            personsAttractivity += mutation.getAttractivityBonus();
+            foreach (Imutation mutation in personToRate.activeMutations)
+            {
+                personsAttractivity += mutation.getAttractivityBonus();
+            }
         }
         return personsAttractivity;
     }

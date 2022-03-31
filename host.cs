@@ -73,10 +73,11 @@ public class host: MonoBehaviour
 
     public void mate(person mate)
     {
-        if (marriageMarket.proposing(currentHost,mate))
+        if (marriageMarket.proposing(currentHost, mate))
         {
             nestIn(breeder.breedPerson(currentHost, mate));
         }
+        else Debug.Log("no marriage happening");
     }
 
     internal void nestIn(person person)

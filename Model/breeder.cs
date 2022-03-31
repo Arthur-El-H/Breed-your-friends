@@ -42,6 +42,7 @@ public class breeder : MonoBehaviour
         brood.thirdEye = breedMutation(mom.thirdEye, dad.thirdEye);
         brood.walrus = breedMutation(mom.walrus, dad.walrus);
         brood.frankenstein = breedMutation(mom.frankenstein, dad.frankenstein);
+        helperClass.saveMutationActivityOfAPersonToItsList(brood);
 
         brood.abnormality = abnormalityMeasurer.getAbnormalityOfPerson(brood);
         brood.attractivity = marriageMarket.getAttractivity(brood);
