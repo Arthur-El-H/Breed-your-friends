@@ -9,4 +9,5 @@ public class walrus : AbstractMutation, Imutation
     private double chanceForNoParent = 5;    
     private bool mutationIsActive;
     private double chanceForRandomCreation = 10;
+    private int AttractivityBonus = 25;
 }

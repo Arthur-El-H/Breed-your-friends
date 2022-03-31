@@ -16,8 +16,6 @@ public class breeder : MonoBehaviour
     const double maxLength = 3;
     const double minLength = .3;
 
-
-
     static System.Random random;
 
 
@@ -45,7 +43,10 @@ public class breeder : MonoBehaviour
         brood.walrus = breedMutation(mom.walrus, dad.walrus);
         brood.frankenstein = breedMutation(mom.frankenstein, dad.frankenstein);
 
+
+
         brood.abnormality = abnormalityMeasurer.getAbnormalityOfPerson(brood);
+        brood.abnormality = marriageMarket.getAttractivity(brood);
 
         return brood;
     }

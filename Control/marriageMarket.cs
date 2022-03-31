@@ -88,4 +88,20 @@ public class marriageMarket: MonoBehaviour
             setUpMate(i, extremeness);
         }
     }
+
+    public bool proposing (person proposingPerson, person respondingPerson)
+    {
+        int howMuchMoreAttractiveIsProposer = proposingPerson - respondingPerson;
+
+        return true;
+    }
+
+    public static int getAttractivity(person personToRate)
+    {
+        int personsAttractivity = 0;
+        personsAttractivity = 80 - personToRate.abnormality;
+        foreach (Imutation in personToRate)
+
+        return personsAttractivity;
+    }
 }

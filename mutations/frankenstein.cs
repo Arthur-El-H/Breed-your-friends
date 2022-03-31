@@ -9,4 +9,5 @@ public class frankenstein : AbstractMutation, Imutation
     private double chanceForNoParent = 5;
     private double chanceForRandomCreation = 10;
     private bool mutationIsActive;
+    private int AttractivityBonus = 5;
 }

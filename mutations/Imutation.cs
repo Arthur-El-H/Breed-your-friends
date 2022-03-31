@@ -9,4 +9,5 @@ public interface Imutation
     public double getChanceForOneParent();
     public double getChanceForBothParents();
     public void setActivity(bool newActivity);
+    public int getAttractivityBonus();
 }

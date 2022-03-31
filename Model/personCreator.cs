@@ -11,6 +11,7 @@ public class personCreator : MonoBehaviour
         newPerson.head = getRandomHead(extremeness);
         newPerson = getRandromGeneralTraits(newPerson, extremeness);
         newPerson = getRandomMutations(newPerson);
+        newPerson.attractivity = marriageMarket.getAttractivity(newPerson);
         return newPerson;
     }
 

@@ -19,7 +19,10 @@ public struct person
     public Imutation walrus;
     public Imutation frankenstein;
 
+    public List<Imutation> activeMutations;
+
     public int abnormality;
+    public int attractivity;
 }
 
 public struct head

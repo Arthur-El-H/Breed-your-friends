@@ -51,4 +51,16 @@ public static class helperClass
             return false;
         }
     }
+
+    public static void saveMutationActivityOfAPersonToItsList(person person)
+    {
+        person.activeMutations = new List<Imutation>();
+        if (person.frankenstein.isActive()) person.activeMutations.Add(person.frankenstein);
+        if (person.jaundice.isActive()) person.activeMutations.Add(person.jaundice);
+        if (person.pox.isActive()) person.activeMutations.Add(person.pox);
+        if (person.sunglasses.isActive()) person.activeMutations.Add(person.sunglasses);
+        if (person.syphilis.isActive()) person.activeMutations.Add(person.syphilis);
+        if (person.thirdEye.isActive()) person.activeMutations.Add(person.thirdEye);
+        if (person.walrus.isActive()) person.activeMutations.Add(person.walrus);
+    }
 }

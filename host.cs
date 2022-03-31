@@ -73,9 +73,19 @@ public class host: MonoBehaviour
 
     public void mate(person mate)
     {
-        Debug.Log("pls marry me");
-        nestIn(breeder.breedPerson(currentHost, mate));
-        Debug.Log("My abnormality is now " + currentHost.abnormality);
+        if (personWantsToMarryHost(mate))
+        {
+            nestIn(breeder.breedPerson(currentHost, mate));
+        }
+    }
+
+    private bool personWantsToMarryHost(person mate)
+    {
+        bool personWantsToMarry = false;
+
+
+
+        return personWantsToMarry;
     }
 
     internal void nestIn(person person)
