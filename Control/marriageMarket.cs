@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class marriageMarket: MonoBehaviour
 {
+    private List<possibleMate> currentPotentialMates;
+
     public personTester totallyNormalTest;
     public personTester prettyNormalTest;
     public personTester notNormalTest;
@@ -15,6 +17,8 @@ public class marriageMarket: MonoBehaviour
     [SerializeField] private host host;
     personCreator personCreator;
     int timesMarketWasEnlarged;
+
+
     public buttonManager.marryMe marryMethod;
 
     Vector2[] matePositions = new Vector2[]
@@ -30,10 +34,21 @@ public class marriageMarket: MonoBehaviour
         new Vector2(9, -4),
     };     
 
+    public List<person> getAllCurrentlyAvailableMates()
+    {
+        List<person> currentlyAvailableMates = new List<person>();
+        foreach(possibleMate mate in currentPotentialMates)
+        {
+            currentlyAvailableMates.Add(mate.person);
+        }
+        return currentlyAvailableMates;
+    }
+
     public void initMarriageMarket(host newHost, personCreator newPersonCreator)
     {
         host = newHost;
         personCreator = newPersonCreator;
+        currentPotentialMates = new List<possibleMate>();
     }
 
     internal void createMarriageMarket()
@@ -70,14 +85,29 @@ public class marriageMarket: MonoBehaviour
 
         possibleMate = Instantiate(genericMate, new Vector3(0, 0, 0), Quaternion.identity).GetComponent<possibleMate>();
         GameObject btn = buttonManager.getButtonForPossibleMate(marryMethod, personToCreate);
-        possibleMate.setUp(btn, matePositions[indexNumber]);
+        possibleMate.setUp(btn, matePositions[indexNumber], personToCreate);
+
+        currentPotentialMates.Add(possibleMate);
+    }
+
+    internal void reset()
+    {
+        foreach(possibleMate mate in currentPotentialMates)
+        {
+            mate.destroy();
+        }
+        currentPotentialMates.Clear();
+        enlargeMarket();
     }
 
     public void enlargeMarket()
     {
-        timesMarketWasEnlarged++;
+        int matesToAdd = 3;
+        // TODO: maybe make method more general: number of new mates and preferences of extremeness as parameter
         double extremeness = standart.totallyNormal;
-        for (int i = 3; i < 6; i++)
+        int firstPositionToSetMateOn = currentPotentialMates.Count + 1;
+        int lastPositionToSetMateOn = firstPositionToSetMateOn + matesToAdd;
+        for (int i = firstPositionToSetMateOn; i < lastPositionToSetMateOn; i++)
         {
             switch (i)
             {
@@ -85,11 +115,11 @@ public class marriageMarket: MonoBehaviour
                 case 4: extremeness = standart.notNormal; break;
                 case 5: extremeness = standart.weird; break;
             }
-            setUpMate(i, extremeness);
+            setUpMate(i-1, extremeness);
         }
     }
 
-    public bool proposing (person proposingPerson, person respondingPerson)
+    public bool hyptheticallyPropose (person proposingPerson, person respondingPerson)
     {
         int howMuchMoreAttractiveIsProposer = proposingPerson.attractivity - respondingPerson.attractivity;
         if (howMuchMoreAttractiveIsProposer < -20)

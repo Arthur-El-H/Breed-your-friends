@@ -14,6 +14,8 @@ public class host: MonoBehaviour
     public personTester breedTest;
 
 
+    private int acquaintancesGained;
+    private int maxTimesToGainAcquaintances = 2;
     private int yearsPassed;
     private const int maxYearsToPass = 5;
 
@@ -45,8 +47,11 @@ public class host: MonoBehaviour
 
     public void gainAcquaintances()
     {
+        // TODO: For now, order of ifs is important, bc isMoreYearsAvailable() adds to passing years... Change that to seperate method
+        if (acquaintancesGained == maxTimesToGainAcquaintances) return;
         if (!isMoreYearsAvailable()) return;
         Debug.Log("gaining Acquaintances");
+        acquaintancesGained++;
         marriageMarket.enlargeMarket();
     }
 
@@ -73,9 +78,10 @@ public class host: MonoBehaviour
 
     public void mate(person mate)
     {
-        if (marriageMarket.proposing(currentHost, mate))
+        if (marriageMarket.hyptheticallyPropose(currentHost, mate))
         {
             nestIn(breeder.breedPerson(currentHost, mate));
+            marriageMarket.reset();
         }
         else Debug.Log("no marriage happening");
     }
@@ -85,6 +91,18 @@ public class host: MonoBehaviour
         currentHost = person;
         currentHost.attractivity = marriageMarket.getAttractivity(this);
         breedTest.showAndTrackPerson(person,"",1);
+    }
+
+    private bool isThereAPotentialMate(List<person> peopleInMarriageMarket)
+    {
+        bool thereIsAPotentialMate = false;
+
+        foreach (person potentialMate in peopleInMarriageMarket )
+        {
+            if (marriageMarket.hyptheticallyPropose(this.currentHost, potentialMate)) return true;
+        }
+
+        return thereIsAPotentialMate;
     }
 
     internal int getWealth()

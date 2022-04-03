@@ -7,16 +7,25 @@ using UnityEngine.UI;
 public class possibleMate : MonoBehaviour
 {
     private GameObject marryBtn;
+    public person person;
 
     private RectTransform btnRect;
     private RectTransform canvRect;
     private Camera cam;
 
-    public void setUp(GameObject btn, Vector2 pos)
+    public void destroy()
+    {
+        Destroy(marryBtn);
+        Destroy(this.gameObject);
+        Destroy(this); //TODO test if still necessary
+    }
+
+    public void setUp(GameObject btn, Vector2 pos, person personMateIsBasedOn)
     {
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         marryBtn = btn;
         transform.position = pos;
+        person = personMateIsBasedOn;
 
         //setPositionRelativeToSprite();
         buttonManager.moveBtn(marryBtn, cam.WorldToScreenPoint(transform.position));
