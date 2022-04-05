@@ -6,6 +6,10 @@ using UnityEngine;
 public class marriageMarket: MonoBehaviour
 {
     private List<possibleMate> currentPotentialMates;
+    public List<possibleMate> getCurrentPotentialMates()
+    {
+        return currentPotentialMates;
+    }
 
     public personTester totallyNormalTest;
     public personTester prettyNormalTest;

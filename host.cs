@@ -14,7 +14,7 @@ public class host: MonoBehaviour
     public personTester breedTest;
 
 
-    private int acquaintancesGained;
+    private int acquaintancesGainedForCurrentHost;
     private int maxTimesToGainAcquaintances = 2;
     private int yearsPassed;
     private const int maxYearsToPass = 5;
@@ -37,9 +37,23 @@ public class host: MonoBehaviour
         return false;
     }
 
+    private bool CheckForLoss(List<person> potentialMates)
+    {
+        foreach (person mate in potentialMates)
+        {
+            if (marriageMarket.hyptheticallyPropose(this.currentHost, mate)) return false;
+        }
+        return true;
+    }
+
     public void gainWealth()
     {
-        if (!isMoreYearsAvailable()) return;
+        if (!isMoreYearsAvailable())
+        {
+            CheckForLoss(marriageMarket.getAllCurrentlyAvailableMates());
+            return;
+        }
+
         Debug.Log("gaining wealth");
         wealth += 30;
         wealth *= 1.3;
@@ -48,16 +62,24 @@ public class host: MonoBehaviour
     public void gainAcquaintances()
     {
         // TODO: For now, order of ifs is important, bc isMoreYearsAvailable() adds to passing years... Change that to seperate method
-        if (acquaintancesGained == maxTimesToGainAcquaintances) return;
-        if (!isMoreYearsAvailable()) return;
+        if (acquaintancesGainedForCurrentHost == maxTimesToGainAcquaintances) return;
+        if (!isMoreYearsAvailable())
+        {
+            CheckForLoss(marriageMarket.getAllCurrentlyAvailableMates());
+            return;
+        }
         Debug.Log("gaining Acquaintances");
-        acquaintancesGained++;
+        acquaintancesGainedForCurrentHost++;
         marriageMarket.enlargeMarket();
     }
 
     public void workout()
     {
-        if (!isMoreYearsAvailable()) return;
+        if (!isMoreYearsAvailable())
+        {
+            CheckForLoss(marriageMarket.getAllCurrentlyAvailableMates());
+            return;
+        }
         Debug.Log("working out");
         attractivity *= 1.4;
     }
@@ -90,6 +112,8 @@ public class host: MonoBehaviour
     {
         currentHost = person;
         currentHost.attractivity = marriageMarket.getAttractivity(this);
+        acquaintancesGainedForCurrentHost = 0;
+        yearsPassed = 0;
         breedTest.showAndTrackPerson(person,"",1);
     }
 
